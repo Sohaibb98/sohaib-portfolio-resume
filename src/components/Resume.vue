@@ -107,7 +107,7 @@
           <div v-for="(visa, country) in visa" :key="country"
             :class="visa.cur_loc ? 'visa-row visa-current' : 'visa-row'"
             style="display: flex; align-items: center; gap: 8px; margin-top: 6px;">
-            <img :src="visa.flag_path" :alt="country + ' flag'" style="width: 20px; height: 15px; object-fit: cover;" :title="visa.city + ', ' + country" />
+            <img :src="getAssetPath(visa.flag_path)" :alt="country + ' flag'" style="width: 20px; height: 15px; object-fit: cover;" :title="visa.city + ', ' + country" />
             <span>| {{ visa.type }}</span>
             <span v-if="visa.type && visa.type.toLowerCase().includes('visa')">| {{ visa.validity }}</span>
             <span v-if="visa.cur_loc" style="margin-left: auto;" :title="'Currently here'">
@@ -257,7 +257,7 @@
                   <div v-if="certificationViewMode === 'grid'" class="certification-grid-view">
                       <div v-for="(cert, ci) in filteredCertifications" :key="ci" class="certification-grid-item" @click="openCertModal(cert)" :title="cert.title">
                           <img 
-                              :src="cert.image_path" 
+                              :src="getAssetPath(cert.image_path)" 
                               :alt="cert.title + ' Certificate'"
                               class="certification-grid-image"
                               @error="handleGridImageError"
@@ -281,7 +281,7 @@
         <div class="cert-modal-body">
           <img 
             v-if="selectedCert?.image_path" 
-            :src="selectedCert.image_path" 
+            :src="getAssetPath(selectedCert.image_path)" 
             :alt="selectedCert.title + ' Certificate'"
             class="cert-modal-image"
             @error="handleImageError"
