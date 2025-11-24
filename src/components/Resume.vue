@@ -140,7 +140,7 @@
           <h4 class="section-headline">{{ headlines.experience }}</h4>
           <div v-for="(company, ci) in filteredExperiences" :key="ci" class="inner-section">
             <div class="company">
-              <span><img :src="company.image" alt="logo" height="25" /></span>
+              <span><img :src="getAssetPath(company.image)" alt="logo" height="25" /></span>
               {{ company.company }}
             </div>
 
@@ -424,6 +424,14 @@ export default {
     },
     handleImageLoad() {
       this.imageError = false;
+    },
+    getAssetPath(path) {
+      // For production build on GitHub Pages, prepend the base URL
+      const base = import.meta.env.BASE_URL;
+      // If path already starts with base, return as is
+      if (path.startsWith(base)) return path;
+      // Otherwise prepend base (removing leading slash from path if base ends with slash)
+      return base + (path.startsWith('/') ? path.slice(1) : path);
     },
     handleGridImageError(event) {
       // Hide the image if it fails to load in grid view
