@@ -1,0 +1,17 @@
+.container {
+    margin: 48px auto;  
+    max-width: 1200px;
+}
+
+.d-flex {
+    display: flex;
+}
+
+:root {
+    --highlight-color-left: #254465;
+    --background-color-left: #DCE6F1;
+    --text-color-left: #3e68b6;
+    --highlight-color-right: #254465;
+    --background-color-right: #ffffff;
+    --text-color-right: #3e68b6
+}
