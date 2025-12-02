@@ -1104,6 +1104,28 @@ export default {
 
 /* Responsive improvements */
 @media (max-width: 768px) {
+  .container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    box-shadow: none;
+  }
+
+  .d-flex {
+    flex-direction: column;
+  }
+
+  .left-col,
+  .right-col {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .left-col {
+    border-right: none;
+    border-bottom: 1px solid var(--highlight-color-left);
+  }
+
   .d-flex.justify-content-between {
     flex-direction: column;
     gap: 4px;
@@ -1115,7 +1137,105 @@ export default {
   
   .project-duration {
     font-size: 12px;
-    align-self: flex-end;
+    align-self: flex-start;
+    margin-top: 2px;
+  }
+
+  .education-duration {
+    align-self: flex-start;
+    margin-top: 2px;
+  }
+
+  .section-headline {
+    font-size: 16px;
+  }
+
+  .company {
+    font-size: 14px;
+  }
+
+  .company img {
+    height: 20px !important;
+  }
+
+  .resume-search-input {
+    width: 95%;
+    font-size: 14px;
+  }
+
+  .resume-search-dropdown {
+    width: 95%;
+  }
+
+  .selected-skills-container {
+    padding: 8px;
+  }
+
+  .selected-skills-wrapper {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .certification-grid-view {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .cert-modal-content {
+    width: 95%;
+    max-width: 95%;
+    margin: 10px;
+  }
+
+  .cert-modal-image {
+    max-height: 60vh;
+  }
+
+  .inner-section {
+    font-size: 13px;
+  }
+
+  ul, li {
+    font-size: 13px;
+  }
+
+  .skill-tag {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+}
+
+/* Extra small devices (phones, less than 576px) */
+@media (max-width: 576px) {
+  .container {
+    font-size: 12px;
+  }
+
+  .left-col,
+  .right-col {
+    padding: 10px;
+  }
+
+  .section-headline {
+    font-size: 14px;
+  }
+
+  .certification-grid-view {
+    grid-template-columns: 1fr;
+  }
+
+  .resume-search-bar {
+    padding: 8px 0;
+  }
+
+  .selected-skills-tags {
+    flex-wrap: wrap;
+  }
+
+  .skill-tag {
+    font-size: 10px;
+    padding: 2px 6px;
   }
 }
 </style>

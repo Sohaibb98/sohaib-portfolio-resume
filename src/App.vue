@@ -41,6 +41,20 @@ export default {
   min-width: 0;
   overflow: visible;
 }
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .app-layout {
+    flex-direction: column;
+    padding: 10px;
+    gap: 15px;
+  }
+
+  .resume-section {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+}
 </style>
 
 

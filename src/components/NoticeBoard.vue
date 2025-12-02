@@ -164,4 +164,53 @@ export default {
   background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
   color: white;
 }
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .notice-title {
+    font-size: 18px;
+  }
+
+  .notice-board-header {
+    padding: 15px 15px 12px;
+  }
+
+  .notice-board-content {
+    padding: 15px;
+  }
+
+  .feature-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .feature-text {
+    font-size: 13px;
+  }
+
+  .feature-icon {
+    font-size: 20px;
+  }
+
+  .status-badge {
+    align-self: flex-start;
+  }
+}
+
+@media (max-width: 576px) {
+  .notice-title {
+    font-size: 16px;
+  }
+
+  .feature-text {
+    font-size: 12px;
+  }
+
+  .status-badge {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+}
 </style>

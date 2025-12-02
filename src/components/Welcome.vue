@@ -5,7 +5,7 @@
       <img src="/Sohaib.PNG" alt="Profile Picture" class="profile-pic" />
       <blockquote class="intro-text">
         <span class="quote-mark opening">"</span>
-            This portfolio is my playground to practice and demonstrate my skills as a Software Developer in all areas such as Backend, Frontend, DevOps, Database Management and Cyber!
+            Let this portfilio be my playground to practice and demonstrate my skills as a Software Developer, utilizing many of my skills learnt and practiced over the years, specially from VueJS.
         <span class="quote-mark closing">"</span>
       </blockquote>
     </div>

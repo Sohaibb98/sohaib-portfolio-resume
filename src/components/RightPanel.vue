@@ -133,4 +133,52 @@ export default {
   opacity: 1;
   transform: scale(1);
 }
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .right-panel {
+    flex: 1 1 100%;
+    width: 100%;
+    padding: 15px;
+  }
+
+  .action-btn {
+    aspect-ratio: 2 / 1;
+    padding: 15px;
+  }
+
+  .btn-icon {
+    font-size: 28px;
+  }
+
+  .btn-text {
+    font-size: 12px;
+  }
+
+  .hover-icon {
+    font-size: 60px;
+  }
+
+  .hover-icon i {
+    font-size: 50px;
+  }
+}
+
+@media (max-width: 576px) {
+  .right-panel {
+    padding: 10px;
+  }
+
+  .action-btn {
+    padding: 12px;
+  }
+
+  .btn-icon {
+    font-size: 24px;
+  }
+
+  .btn-text {
+    font-size: 11px;
+  }
+}
 </style>
