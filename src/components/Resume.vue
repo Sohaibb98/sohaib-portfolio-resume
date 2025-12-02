@@ -106,10 +106,10 @@
           <h4 class="section-headline">{{ headlines.visa }}</h4>
           <div v-for="(visa, country) in visa" :key="country"
             :class="visa.cur_loc ? 'visa-row visa-current' : 'visa-row'"
-            style="display: flex; align-items: center; gap: 8px; margin-top: 6px;">
+            style="display: flex; align-items: center; gap: 8px; margin-top: 6px; cursor: pointer;"
+            @click="openVisaModal(visa, country)">
             <img :src="getAssetPath(visa.flag_path)" :alt="country + ' flag'" style="width: 20px; height: 15px; object-fit: cover;" :title="visa.city + ', ' + country" />
             <span>| {{ visa.type }}</span>
-            <span v-if="visa.type && visa.type.toLowerCase().includes('visa')">| {{ visa.validity }}</span>
             <span v-if="visa.cur_loc" style="margin-left: auto;" :title="'Currently here'">
               <i class="fa-solid fa-location-dot" style="color: #d00; font-size: 15px;"></i>
             </span>
@@ -303,6 +303,29 @@
       </div>
     </div>
     </div> <!-- End of v-else content wrapper -->
+
+    <!-- Visa Details Modal -->
+    <div v-if="showVisaModal" class="cert-modal-overlay" @click="closeVisaModal">
+      <div class="cert-modal-content" @click.stop style="max-width: 400px;">
+        <div class="cert-modal-header">
+          <h3>{{ selectedVisa?.country }}</h3>
+          <button @click="closeVisaModal" class="cert-modal-close">&times;</button>
+        </div>
+        <div class="cert-modal-body">
+          <div class="visa-modal-details">
+            <div class="visa-detail-row">
+              <strong>Stays In:</strong> <span>{{ selectedVisa?.city }}</span>
+            </div>
+            <div class="visa-detail-row">
+              <strong>Visa Type:</strong> <span>{{ selectedVisa?.type }}</span>
+            </div>
+            <div class="visa-detail-row" v-if="selectedVisa?.validity">
+              <strong>Validity:</strong> <span>{{ selectedVisa?.validity }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 </template>
 
@@ -345,6 +368,8 @@ export default {
       loading: true,
       error: null,
       showCertModal: false,
+      showVisaModal: false,
+      selectedVisa: null,
       selectedCert: null,
       imageError: false,
       certificationViewMode: 'list',
@@ -418,6 +443,17 @@ export default {
       this.showCertModal = false;
       this.selectedCert = null;
       this.imageError = false;
+    },
+    openVisaModal(visa, country) {
+      this.selectedVisa = {
+        ...visa,
+        country: country
+      };
+      this.showVisaModal = true;
+    },
+    closeVisaModal() {
+      this.showVisaModal = false;
+      this.selectedVisa = null;
     },
     handleImageError() {
       this.imageError = true;
@@ -675,8 +711,6 @@ export default {
 .left-col .section-headline {
   border-bottom: 1px solid var(--highlight-color-left);
   padding-bottom: 5px;
-  margin-right: -30px;
-  padding-right: 10px;
   color: var(--highlight-color-left);
 }
 
@@ -690,15 +724,14 @@ export default {
   font-size: 28px;
   border-bottom: 1px solid var(--highlight-color-right);
   margin: 0;
-  margin-left: -30px;
-  padding-left: 30px;
+  padding-left: 10px;
   padding-bottom: 15px;
 }
 
 .personal-title {
   border-bottom: 1px solid var(--highlight-color-right);
-  margin: 0 0 20px -30px;
-  padding: 15px 0 15px 30px;
+  margin: 0 0 20px 0;
+  padding: 15px 0 15px 10px;
   font-weight: 300;
   font-size: 20px;
 }
@@ -751,7 +784,16 @@ export default {
   align-items: center;
   gap: 8px;
   margin-top: 6px;
+  transition: all 0.2s ease;
+  padding: 4px 8px;
+  border-radius: 4px;
 }
+
+.visa-row:hover {
+  background-color: var(--text-color-left);
+  color: var(--background-color-left);
+}
+
 .visa-current {
   font-weight: bold;
 }
@@ -984,6 +1026,31 @@ export default {
   background-color: #007bff;
   color: white;
   text-decoration: none;
+}
+
+/* Visa Modal Specific Styles */
+.visa-modal-details {
+  text-align: left;
+}
+
+.visa-detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.visa-detail-row:last-child {
+  border-bottom: none;
+}
+
+.visa-detail-row strong {
+  color: #333;
+  font-weight: 600;
+}
+
+.visa-detail-row span {
+  color: #666;
 }
 
 /* Loading and Error States */
