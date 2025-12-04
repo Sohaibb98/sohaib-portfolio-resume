@@ -80,4 +80,39 @@ export default {
     flex-shrink: 0;
 }
 
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .welcome-container {
+    padding: 20px;
+  }
+
+  .welcome-message {
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .quote-section {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .profile-pic {
+    width: 120px;
+    height: 120px;
+  }
+
+  .intro-text {
+    font-size: 16px;
+    padding: 20px 15px;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .quote-mark {
+    font-size: 32px;
+  }
+}
+
 </style>
