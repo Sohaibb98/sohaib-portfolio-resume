@@ -255,14 +255,14 @@
                   
                   <!-- Grid View -->
                   <div v-if="certificationViewMode === 'grid'" class="certification-grid-view">
-                      <div v-for="(cert, ci) in filteredCertifications" :key="ci" class="certification-grid-item" @click="openCertModal(cert)" :title="cert.title">
+                        <div v-for="(cert, ci) in filteredCertifications" :key="ci" class="certification-grid-item" @click="openCertModal(cert)" :title="cert.title">
                           <img 
-                              :src="getAssetPath(cert.image_path)" 
-                              :alt="cert.title + ' Certificate'"
-                              class="certification-grid-image"
-                              @error="handleGridImageError"
+                            :src="getAssetPath(getImageKitPrefixed(cert.image_path))" 
+                            :alt="cert.title + ' Certificate'"
+                            class="certification-grid-image"
+                            @error="handleGridImageError"
                           />
-                      </div>
+                        </div>
                   </div>
               </div>   
           </div>
@@ -463,11 +463,18 @@ export default {
     },
     getAssetPath(path) {
       // For production build on GitHub Pages, prepend the base URL
-      const base = import.meta.env.BASE_URL;
-      // If path already starts with base, return as is
-      if (path.startsWith(base)) return path;
+      const base = import.meta.env.BASE_URL || '';
+      // If path already starts with base or is an absolute URL, return as is
+      if (/^https?:\/\//i.test(path) || (base && path && path.startsWith(base))) return path;
       // Otherwise prepend base (removing leading slash from path if base ends with slash)
-      return base + (path.startsWith('/') ? path.slice(1) : path);
+      return base + (path && path.startsWith('/') ? path.slice(1) : path);
+    },
+    getImageKitPrefixed(path) {
+      const base = import.meta.env.VITE_IMAGEKIT_BASE || '';
+      if (!base) return path;
+      const normalizedBase = base.endsWith('/') ? base : base + '/';
+      const normalizedPath = path && path.startsWith('/') ? path.slice(1) : (path || '');
+      return normalizedBase + normalizedPath;
     },
     handleGridImageError(event) {
       // Hide the image if it fails to load in grid view
