@@ -36,3 +36,6 @@ src/.env
 
 # Vitest
 __screenshots__/
+
+.vercel
+.env*

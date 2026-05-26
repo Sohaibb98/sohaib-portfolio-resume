@@ -281,7 +281,7 @@
         <div class="cert-modal-body">
           <img 
             v-if="selectedCert?.image_path" 
-            :src="getAssetPath(selectedCert.image_path)" 
+            :src="getAssetPath(getImageKitPrefixed(selectedCert.image_path))" 
             :alt="selectedCert.title + ' Certificate'"
             class="cert-modal-image"
             @error="handleImageError"
